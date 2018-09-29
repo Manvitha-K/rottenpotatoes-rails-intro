@@ -14,12 +14,17 @@ class MoviesController < ApplicationController
      @all_ratings = Movie.order(:rating).select(:rating).map(&:rating).uniq
      if params[:ratings]
        @sel_ratings = params[:ratings].keys
-       session[:ratingsKey] = params[:ratings].keys
+       session[:ratingsKey] = params[:ratings]
      elsif session[:ratingsKey]
+        #@sel_ratings = session[:ratingsKey].keys
         @sel_ratings = session[:ratingsKey].keys
+        
     else
       @sel_ratings = @all_ratings
     end
+    
+    puts(@sel_ratings)
+    puts(session[:ratingsKey])
     
     @sel_ratings.each do |rating|
       params[rating] = true
