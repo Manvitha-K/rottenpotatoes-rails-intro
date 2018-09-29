@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
      @all_ratings = Movie.order(:rating).select(:rating).map(&:rating).uniq
      if params[:ratings]
        @sel_ratings = params[:ratings].keys
-       session[:ratingsKey] = params[:ratings].keys
+       session[:ratingsKey] = params[:ratings]
      elsif session[:ratingsKey]
         @sel_ratings = session[:ratingsKey].keys
     else
